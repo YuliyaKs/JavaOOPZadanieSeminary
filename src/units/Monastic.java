@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Монах
 public class Monastic extends Psychic{
 
@@ -9,8 +11,8 @@ public class Monastic extends Psychic{
         return String.format("Hero_Monastic #%d", ++Monastic.number);
     }
 
-    public Monastic(int x, int y) {
-        super(setName(), x, y);
+    public Monastic(int x, int y, int initiative) {
+        super(setName(), x, y, initiative);
         this.miro = Monastic.r.nextInt(0, 100);
     }
 
@@ -22,10 +24,10 @@ public class Monastic extends Psychic{
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }
 

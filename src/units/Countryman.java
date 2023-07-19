@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Крестьянин
 public class Countryman extends AbsoluteHero{
     
@@ -7,11 +9,11 @@ public class Countryman extends AbsoluteHero{
     private int maxMusclePower;
     private int tool; // инструменты
 
-    public Countryman(int x, int y) {
+    public Countryman(int x, int y, int initiative) {
         super(String.format("Hero_Countryman #%d", ++Countryman.number),
             Countryman.r.nextInt(100, 200),
             Countryman.r.nextInt(500, 1000), 
-            Countryman.r.nextInt(0, 50), x, y);
+            Countryman.r.nextInt(0, 50), x, y, initiative);
         this.maxMusclePower = Countryman.r.nextInt(50, 150);
         this.musclePower = maxMusclePower;
         this.tool = Countryman.r.nextInt(0, 100);
@@ -28,9 +30,9 @@ public class Countryman extends AbsoluteHero{
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }

@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Разбойник
 public class Bandit extends Soldier{
     
@@ -9,8 +11,8 @@ public class Bandit extends Soldier{
         return String.format("Hero_Bandit #%d", ++Killer.number);
     }
 
-    public Bandit(int x, int y) {
-        super(setName(), x, y);
+    public Bandit(int x, int y, int initiative) {
+        super(setName(), x, y, initiative);
         this.blade = Bandit.r.nextInt(0, 100);
     }
 
@@ -26,9 +28,9 @@ public class Bandit extends Soldier{
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }

@@ -11,10 +11,10 @@ public abstract class Psychic extends AbsoluteHero {
         return fio = String.format("Hero_Psychic #%d", ++Psychic.number);
     }
 
-    public Psychic(String fio, int x, int y) {
+    public Psychic(String fio, int x, int y, int initiative) {
         super(fio, Psychic.r.nextInt(100, 200),
             Psychic.r.nextInt(500, 1000), 
-            Psychic.r.nextInt(0, 50), x, y);
+            Psychic.r.nextInt(0, 50), x, y, initiative);
         this.maxMana = Countryman.r.nextInt(50, 150);
         this.mana = maxMana;
     }

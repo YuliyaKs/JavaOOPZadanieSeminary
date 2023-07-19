@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Колдун
 public class Mage extends Psychic{
 
@@ -11,8 +13,8 @@ public class Mage extends Psychic{
         return String.format("Hero_Mage #%d", ++Mage.number);
     }
 
-    public Mage(int x, int y) {
-        super(setName(), x, y);
+    public Mage(int x, int y, int initiative) {
+        super(setName(), x, y, initiative);
         this.elixir = Mage.r.nextInt(0, 100);
     }
 
@@ -31,9 +33,9 @@ public class Mage extends Psychic{
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }

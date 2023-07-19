@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Копейщик
 public class Pikeman extends Soldier {
     
@@ -9,8 +11,8 @@ public class Pikeman extends Soldier {
         return String.format("Hero_Pikeman #%d", ++Killer.number);
     }
 
-    public Pikeman(int x, int y) {
-        super(setName(), x, y);
+    public Pikeman(int x, int y, int initiative) {
+        super(setName(), x, y, initiative);
         this.pike = Pikeman.r.nextInt(0, 100);
     }
 
@@ -25,9 +27,9 @@ public class Pikeman extends Soldier {
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }

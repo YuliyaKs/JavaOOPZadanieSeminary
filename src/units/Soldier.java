@@ -11,10 +11,10 @@ public abstract class Soldier extends AbsoluteHero{
         return fio = String.format("Hero_Soldier #%d", ++Soldier.number);
     }
 
-    public Soldier(String fio, int x, int y) {
+    public Soldier(String fio, int x, int y, int initiative) {
         super(fio, Soldier.r.nextInt(100, 200),
             Soldier.r.nextInt(500, 1000), 
-            Soldier.r.nextInt(0, 50), x, y);
+            Soldier.r.nextInt(0, 50), x, y, initiative);
         this.maxSpeed = Soldier.r.nextInt(50, 150);
         this.speed = maxSpeed;
     }

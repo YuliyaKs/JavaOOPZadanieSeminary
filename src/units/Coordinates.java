@@ -9,12 +9,19 @@ public class Coordinates {
         this.y = y;
     }
 
-    public static double distance (int x1, int y1, int x2, int y2){
-        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    public static double distance (int x, int y, AbsoluteHero hero2){
+        return Math.sqrt(Math.pow(x - hero2.coordinates.x, 2) +
+                Math.pow(y - hero2.coordinates.y, 2));
     }
 
     @Override
     public String toString() {
         return "(x: " + x + "; y: " + y +")";
+    }
+    public static int[] getCoordinates(AbsoluteHero hero){
+        int[] coordinates = new int[2];
+        coordinates[0] = hero.coordinates.x;
+        coordinates[1] = hero.coordinates.y;
+        return coordinates;
     }
 }

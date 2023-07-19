@@ -11,10 +11,10 @@ public abstract class Shooter extends AbsoluteHero{
         return fio = String.format("Hero_Shooter #%d %d", ++Shooter.number, Shooter.class);
     }
 
-    public Shooter(String fio, int x, int y) {
+    public Shooter(String fio, int x, int y, int initiative) {
         super(fio, Shooter.r.nextInt(100, 200),
             Shooter.r.nextInt(500, 1000), 
-            Shooter.r.nextInt(0, 50), x, y);
+            Shooter.r.nextInt(0, 50), x, y, initiative);
         this.maxAccuracy = Shooter.r.nextInt(50, 150);
         this.accuracy = maxAccuracy;
     }

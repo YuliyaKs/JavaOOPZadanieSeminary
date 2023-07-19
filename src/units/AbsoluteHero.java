@@ -10,8 +10,11 @@ public abstract class AbsoluteHero implements AppInterface{
     protected String name;
     protected int hp; // жизненная сила
     protected int maxHp;
+
+    public int initiative;
     protected int money; // деньги
     protected int hunger; // голод
+
     protected Coordinates coordinates;
 
     static {
@@ -19,20 +22,21 @@ public abstract class AbsoluteHero implements AppInterface{
         AbsoluteHero.r = new Random();
     }
 
-    public AbsoluteHero(String name, int hp, int money, int hunger, int x, int y) {
+    public AbsoluteHero(String name, int hp, int money, int hunger, int x, int y, int initiative) {
         this.name = name;
         this.hp = hp;
         this.maxHp = hp;
         this.money = money;
         this.hunger = hunger;
         this.coordinates = new Coordinates(x, y);
-    }
+        this.initiative = initiative;
+     }
 
-    public AbsoluteHero(int x, int y) {
+    public AbsoluteHero(int x, int y, int initiative) {
         this(String.format("Hero_Base #%d", ++AbsoluteHero.number), 
-        AbsoluteHero.r.nextInt(100, 200), 
-        AbsoluteHero.r.nextInt(500, 1000), 
-        AbsoluteHero.r.nextInt(0, 50), x, y);
+        AbsoluteHero.r.nextInt(100, 200),
+        AbsoluteHero.r.nextInt(500, 1000),
+        AbsoluteHero.r.nextInt(0, 50), x, y, initiative);
     }
 
     @Override
@@ -41,20 +45,15 @@ public abstract class AbsoluteHero implements AppInterface{
     }
 
     // Метод для поиска ближайшего противника
-    public String findNearest (ArrayList<AbsoluteHero> enemyArmy){
-        double minDistance = Coordinates.distance(coordinates.x, coordinates.y,
-                            enemyArmy.get(0).coordinates.x, enemyArmy.get(0).coordinates.y);
-        int j = 0;
-        double dist = 0;
-        for (int i = 1; i < enemyArmy.size(); i++) {
-            dist = Coordinates.distance(coordinates.x, coordinates.y,
-                    enemyArmy.get(i).coordinates.x, enemyArmy.get(i).coordinates.y);
-            if (dist < minDistance) {
-                minDistance = dist;
-                j = i;
+    public AbsoluteHero findNearest (ArrayList<AbsoluteHero> enemyArmy){
+        AbsoluteHero nearest = enemyArmy.get(0);
+        for (int i = 1; i < enemyArmy.size() ; i++) {
+            if (Coordinates.distance(coordinates.x, coordinates.y, enemyArmy.get(i)) <
+                    Coordinates.distance(coordinates.x, coordinates.y, nearest)){
+                nearest = enemyArmy.get(i);
             }
         }
-        return enemyArmy.get(j).getInfo() + "; distance: " + minDistance;
+        return nearest;
     }
 
     // Метод питание

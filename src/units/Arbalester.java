@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 // Класс Арбалетчик
 public class Arbalester extends Shooter{
     
@@ -9,8 +11,8 @@ public class Arbalester extends Shooter{
         return String.format("Hero_Arbalester #%d", ++Arbalester.number);
     }
 
-    public Arbalester(int x, int y) {
-        super(setName(), x, y);
+    public Arbalester(int x, int y, int initianive) {
+        super(setName(), x, y, initianive);
         this.dart = Arbalester.r.nextInt(0, 100);
     }
 
@@ -22,10 +24,10 @@ public class Arbalester extends Shooter{
 
     @Override
     public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates;
+        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override
-    public void step(){}
+    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }
 
