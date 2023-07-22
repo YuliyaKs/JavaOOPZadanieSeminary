@@ -1,8 +1,10 @@
-package units;
+package units.helpers;
+
+import units.abstractclass.AbsoluteHero;
 
 public class Coordinates {
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     public Coordinates(int x, int y){
         this.x = x;
@@ -18,10 +20,5 @@ public class Coordinates {
     public String toString() {
         return "(x: " + x + "; y: " + y +")";
     }
-    public static int[] getCoordinates(AbsoluteHero hero){
-        int[] coordinates = new int[2];
-        coordinates[0] = hero.coordinates.x;
-        coordinates[1] = hero.coordinates.y;
-        return coordinates;
-    }
+
 }

@@ -1,4 +1,6 @@
-package units;
+package units.helpers;
+
+import units.abstractclass.AbsoluteHero;
 
 import java.util.ArrayList;
 

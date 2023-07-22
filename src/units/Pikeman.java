@@ -1,5 +1,9 @@
 package units;
 
+import units.abstractclass.AbsoluteHero;
+import units.abstractclass.Soldier;
+import units.helpers.States;
+
 import java.util.ArrayList;
 
 // Класс Копейщик
@@ -7,27 +11,9 @@ public class Pikeman extends Soldier {
     
     private int pike; // копья
 
-    public static String setName(){
-        return String.format("Hero_Pikeman #%d", ++Killer.number);
-    }
-
-    public Pikeman(int x, int y, int initiative) {
-        super(setName(), x, y, initiative);
+    public Pikeman(int x, int y) {
+        super(new int[]{2, 6}, x, y, 7, States.Ready);
         this.pike = Pikeman.r.nextInt(0, 100);
-    }
-
-      // Метод война
-    public void war(int hour) {
-        super.money += hour * 100;
-        super.hunger += hour * 10;
-        if (hunger > 100) super.die();
-        super.speed -= hour * 10;
-        this.pike -= hour * 5;
-    }
-
-    @Override
-    public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
     }
 
     @Override

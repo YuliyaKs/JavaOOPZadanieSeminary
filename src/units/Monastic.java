@@ -1,33 +1,15 @@
 package units;
 
-import java.util.ArrayList;
+import units.abstractclass.Psychic;
+import units.helpers.States;
 
 // Класс Монах
-public class Monastic extends Psychic{
+public class Monastic extends Psychic {
 
     private int miro;
 
-    public static String setName(){
-        return String.format("Hero_Monastic #%d", ++Monastic.number);
-    }
-
-    public Monastic(int x, int y, int initiative) {
-        super(setName(), x, y, initiative);
+    public Monastic(int x, int y) {
+        super(new int[]{-5, -5}, x, y, 5, States.Ready);
         this.miro = Monastic.r.nextInt(0, 100);
     }
-
-    // Метод обряды
-    public void ceremony(int hour) {
-        super.ceremony(hour);
-        this.miro -= hour * 5;
-    }
-
-    @Override
-    public String getInfo() {
-        return getClass().getName() + " " + name + " " + coordinates + " " + hp;
-    }
-
-    @Override
-    public void step(ArrayList<AbsoluteHero> enemyArmy, ArrayList<AbsoluteHero> ownArmy){}
 }
-
