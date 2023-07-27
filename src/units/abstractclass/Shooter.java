@@ -37,6 +37,6 @@ public abstract class Shooter extends AbsoluteHero {
     @Override
     public String getInfo() {
         return getClass().getName().substring(6)
-                + " " + name + " \u2661:" + hp + " \u2299:" + coordinates + " \u2655:" + initiative + " \u2605:" + state + " \u21F6:" + dart;
+                + " " + name + " \u2764:" + hp + " \u2691:" + coordinates + " \u2655:" + initiative + " \u2605:" + state + " \u21F6:" + dart;
     }
 }

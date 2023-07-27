@@ -5,6 +5,7 @@ import units.helpers.States;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
 
 public class App {
 
@@ -18,51 +19,25 @@ public class App {
 
         fillArmyDF(armyDarkForces);
 
-//        #region
 //        Вызывать персонажей из обеих комманд в порядке инициативы.
         army.addAll(armyLightForces);
         army.addAll(armyDarkForces);
         army.sort(Comparator.comparing((AbsoluteHero hero) -> hero.initiative));
 
-        armyLightForces.forEach(n -> System.out.println(n.getInfo()));
-        armyDarkForces.forEach(n -> System.out.println(n.getInfo()));
-        System.out.println("---------------");
+        Scanner in = new Scanner(System.in);
 
-        for (int i = 19; i >= 0; i-- ){
-            if (armyLightForces.contains(army.get(i))) {
-                army.get(i).step(armyDarkForces, armyLightForces);
-                System.out.println(army.get(i).getInfo());
-            }else {
-                army.get(i).step(armyLightForces, armyDarkForces);
-                System.out.println(army.get(i).getInfo());
+        while (true) {
+            for (int i = 19; i >= 0; i--) {
+                if (armyLightForces.contains(army.get(i))) {
+                    army.get(i).step(armyDarkForces, armyLightForces);
+                } else {
+                    army.get(i).step(armyLightForces, armyDarkForces);
+                }
+
             }
-
+            View.view();
+            in.nextLine();
         }
-        System.out.println("---------------");
-
-        armyLightForces.forEach(n -> System.out.println(n.getInfo()));
-        armyDarkForces.forEach(n -> System.out.println(n.getInfo()));
-        System.out.println("---------------");
-
-
-        for (int i = 19; i >= 0; i-- ){
-            if (armyLightForces.contains(army.get(i))) {
-                army.get(i).step(armyDarkForces, armyLightForces);
-                System.out.println(army.get(i).getInfo());
-            }else {
-                army.get(i).step(armyLightForces, armyDarkForces);
-                System.out.println(army.get(i).getInfo());
-            }
-
-        }
-        System.out.println("---------------");
-
-        armyLightForces.forEach(n -> System.out.println(n.getInfo()));
-        armyDarkForces.forEach(n -> System.out.println(n.getInfo()));
-        System.out.println("---------------");
-//        #endregion
-
-        View.view();
     }
     public static void fillArmyLF (ArrayList<AbsoluteHero> ArrList) {
         for (int i = 1; i < 11; i++) {

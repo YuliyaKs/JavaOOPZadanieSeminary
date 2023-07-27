@@ -61,15 +61,22 @@ public abstract class AbsoluteHero implements AppInterface {
     @Override
     public String getInfo() {
         return getClass().getName().substring(6)
-                + " " + name + " \u2661:" + hp + " \u2299:" + coordinates + " \u2655:" + initiative + " \u2605:" + state;
+                + " " + name + " \u2764:" + hp + " \u2691:" + coordinates + " \u2655:" + initiative + " \u2605:" + state;
     }
 
     // Метод для поиска ближайшего противника
     public AbsoluteHero findNearest (ArrayList<AbsoluteHero> enemyArmy){
-        AbsoluteHero nearest = enemyArmy.get(0);
-        for (int i = 1; i < enemyArmy.size() ; i++) {
-            if (Coordinates.distance(coordinates.x, coordinates.y, enemyArmy.get(i)) <
-                    Coordinates.distance(coordinates.x, coordinates.y, nearest)){
+        int index = 0;
+        for (int j = 0; j < enemyArmy.size(); j++) {
+            if (enemyArmy.get(j).state != States.Die) {
+                index = j;
+            }
+        }
+        AbsoluteHero nearest = enemyArmy.get(index);
+        for (int i = 0; i < enemyArmy.size(); i++) {
+            if (coordinates.distance(enemyArmy.get(i)) <
+                    coordinates.distance(nearest) &
+                    enemyArmy.get(i).state != States.Die){
                 nearest = enemyArmy.get(i);
             }
         }
@@ -93,7 +100,7 @@ public abstract class AbsoluteHero implements AppInterface {
     protected void die() {
         System.out.println("You are dead");
         this.state = States.Die;
-        return;
+        this.hp = 0;
     }
 
     // Метод лечение
